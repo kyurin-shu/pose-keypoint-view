@@ -10,6 +10,11 @@
       "StackName": "amplify-posekeypointview-dev-113207",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:737247961693:stack/amplify-posekeypointview-dev-113207/b8f6c140-5668-11ed-907a-0ac8cff062af",
       "AmplifyAppId": "d3rckyb9a7sk17"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
     }
   }
 }
