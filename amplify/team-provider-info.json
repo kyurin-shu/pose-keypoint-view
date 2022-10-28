@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-posekeypointview-dev-113207-authRole",
+      "UnauthRoleArn": "arn:aws:iam::737247961693:role/amplify-posekeypointview-dev-113207-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::737247961693:role/amplify-posekeypointview-dev-113207-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-posekeypointview-dev-113207-deployment",
+      "UnauthRoleName": "amplify-posekeypointview-dev-113207-unauthRole",
+      "StackName": "amplify-posekeypointview-dev-113207",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:737247961693:stack/amplify-posekeypointview-dev-113207/b8f6c140-5668-11ed-907a-0ac8cff062af",
+      "AmplifyAppId": "d3rckyb9a7sk17"
+    }
+  }
+}
