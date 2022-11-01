@@ -82,15 +82,19 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
 <template>
     <h2>hellohello</h2>
 
-    <div>
-        <input type="file" accept="image/*" @change="uploadFile"/>
-        <img :src="image_url">
-        <input type="submit" @click="submitImage" v-if="image_url">
-    </div>
-
-    <div>
-        <img :src="image_keypoint_url">
-    </div>
+    <v-container>
+        <v-row>
+            <v-col>
+                <v-file-input class="" label="画像を登録" accept="image/*" @change="uploadFile" />
+                <v-img width="400" :src="image_url"></v-img>
+            </v-col>
+            <v-col>
+                <v-btn @click="submitImage" v-if="image_url">Get</v-btn>
+                <v-img width="400" :src="image_keypoint_url"></v-img>
+            </v-col>
+        </v-row>
+    </v-container>
+    
 </template>
 
 
