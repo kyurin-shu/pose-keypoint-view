@@ -18,7 +18,7 @@ const keypoint_info = ref('')
  */
 function uploadFile(e) {
   // clear keypoint image
-  image_keypoint_url.value = ''
+  clearImageKeypoint()
   // file blob for post to api
   try {
     image_file.value = e.target.files[0]
@@ -32,6 +32,10 @@ function uploadFile(e) {
 
 function clearFile() {
   image_url.value = ''
+  clearImageKeypoint()
+}
+
+function clearImageKeypoint() {
   image_keypoint_url.value = ''
   keypoint_info.value = ''
 }
@@ -41,8 +45,7 @@ function clearFile() {
  * keypoint画像を取得
  */
 async function submitImage() {
-  image_keypoint_url.value = ''
-  keypoint_info.value = ''
+  clearImageKeypoint()
 
   const post_data = JSON.stringify({
     'body': await base64Encode(image_file.value)
@@ -128,7 +131,7 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
       <v-col cols="6">
         <v-card
           class="bg-grey-lighten-3" 
-          height="625"
+          min-height="200"
           variant="flat"
         >
           <p class="font-weight-bold">Upload Image</p>
@@ -140,7 +143,7 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
       <v-col cols="6">
         <v-card 
           class="bg-grey-lighten-3 " 
-          height="625"
+          min-height="200"
           variant="flat"
         >
           <p class="font-weight-bold">Keypoint Image</p>
@@ -150,6 +153,7 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
             :width="10"
             color="purple" 
             indeterminate
+            class="ma-8 pa-4"
             v-if="loading_image_api_flag"
           ></v-progress-circular>
 
