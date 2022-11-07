@@ -4,4 +4,4 @@
 
 amplifyでS3+CloudFrontにデプロイしている。
 
-APP_URL: - [https://di9gk20ak8za5.cloudfront.net/](https://di9gk20ak8za5.cloudfront.net/)
+APP_URL: https://di9gk20ak8za5.cloudfront.net/
