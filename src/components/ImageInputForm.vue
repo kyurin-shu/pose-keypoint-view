@@ -48,7 +48,9 @@ async function submitImage() {
   clearImageKeypoint()
 
   const post_data = JSON.stringify({
-    'body': await base64Encode(image_file.value)
+    'body': await base64Encode(image_file.value),
+    'model': "lightning",
+    'format': "normal"
   })
   // Debug出力、登録画像をencodeしてdecodeしたものを出力
   // image_keypoint_url.value = await base64Decode(JSON.parse(post_data)['body'], image_file.value['type'])
@@ -67,15 +69,18 @@ async function submitImage() {
       console.log(response)
       // keypoint画像情報を取得
       keypoint_info.value = response.data.body.data['0']
-      base64Decode(response.data.file, image_file.value['type'])
+      console.log(keypoint_info.value)
+      base64Decode(response.data.file.original_image, image_file.value['type'])
         .then(result => {
           image_keypoint_url.value = result
           console.log('Success!')
-          loading_image_api_flag.value = false
         })
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error.response.data)
+    })
+    .finally(() => {
+      loading_image_api_flag.value = false
     })
 }
 
@@ -134,7 +139,7 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
           min-height="200"
           variant="flat"
         >
-          <p class="font-weight-bold">Upload Image</p>
+          <p class="font-weight-bold">Upload Image View</p>
 
           <v-img height="600" :src="image_url" v-if="image_url !== ''"></v-img>
         </v-card>
@@ -146,7 +151,7 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
           min-height="200"
           variant="flat"
         >
-          <p class="font-weight-bold">Keypoint Image</p>
+          <p class="font-weight-bold">Keypoint Image View</p>
           
           <v-progress-circular 
             :size="100" 
@@ -167,7 +172,7 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
       variant="outlined"
       style="text-align: left;"
     >
-      <p class="font-weight-bold" style="text-align: center;">Keypoint Info</p>
+      <p class="font-weight-bold" style="text-align: center;">Keypoint Information</p>
 
       <v-card-text class="ml-4">
         <p v-if="keypoint_info.score">
@@ -178,7 +183,7 @@ async function base64Decode(text, type = "text/plain;charset=UTF-8") {
       <!-- <v-list> -->
         <v-row>
           <v-col 
-            cols="3"
+            cols="4"
             v-for="(keypoint, index) in keypoint_info.keypoints"
             :key="keypoint.name"  
           >
